@@ -83,10 +83,8 @@ Setelah menjalankan seeder, akun berikut tersedia:
 | ---------- | ------------ | -------------------- |
 | Admin      | `admin`      | `passwordadmin`      |
 | Karyawan   | `karyawan`   | `passwordkaryawan`   |
-| partime    | `parttime`   | `passwordpartime`    |
+| freelance  | `freelance`  | `passwordfreelance`  |
 | internship | `internship` | `passwordinternship` |
-
-> Segera ganti password setelah login pertama.
 
 ---
 

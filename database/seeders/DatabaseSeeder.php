@@ -35,14 +35,41 @@ class DatabaseSeeder extends Seeder
       ]);
     }
 
-    $role = Role::where('name', 'admin')->first();
+    $role_admin = Role::where('name', 'Admin')->first();
+    $role_freelance = Role::where('name', 'Freelance')->first();
+    $role_pegawai = Role::where('name', 'Pegawai Tetap')->first();
+    $role_internship = Role::where('name', 'Internship')->first();
 
     User::factory()->create([
-      'name' => 'admin',
+      'name'     => 'Admin',
       'username' => 'admin',
-      'email' => 'admin@gmail.com',
+      'email'    => 'admin@gmail.com',
       'password' => Hash::make('passwordadmin'),
-      'role_id' => $role->id_role,
+      'role_id'  => $role_admin->id_role,
+    ]);
+
+    User::factory()->create([
+      'name'     => 'Internship',
+      'username' => 'internship',
+      'email'    => 'internship@gmail.com',
+      'password' => Hash::make('passwordinternship'),
+      'role_id'  => $role_internship->id_role,
+    ]);
+
+    User::factory()->create([
+      'name'     => 'Freelance',
+      'username' => 'freelance',
+      'email'    => 'freelance@gmail.com',
+      'password' => Hash::make('passwordfreelance'),
+      'role_id'  => $role_freelance->id_role,
+    ]);
+
+    User::factory()->create([
+      'name'     => 'Pegawai',
+      'username' => 'pegawai',
+      'email'    => 'pegawai@gmail.com',
+      'password' => Hash::make('passwordpegawai'),
+      'role_id'  => $role_pegawai->id_role,
     ]);
 
     User::factory(10)->create();
