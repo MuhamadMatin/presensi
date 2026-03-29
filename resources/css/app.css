@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+  --font-sans:
+    "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#search {
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db !important; /* gray-300 */
+  font-size: 0.875rem;
+  color: #1f2937; /* gray-800 */
+  background-color: #ffffff;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+#search:focus {
+  outline: none !important;
+  border-color: #6366f1 !important; /* indigo-500 */
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2) !important;
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db !important; /* gray-300 */
+  font-size: 0.875rem;
+  color: #1f2937; /* gray-800 */
+  background-color: #ffffff;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+#list_table_wrapper.dt-container.dt-empty-footer
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-start
+  .dt-length
+  select.dt-input,
+#list_table_wrapper.dt-container.dt-empty-footer
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-search
+  input.dt-input {
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db !important; /* gray-300 */
+  font-size: 0.875rem;
+  color: #1f2937; /* gray-800 */
+  background-color: #ffffff;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+#list_table_wrapper.dt-container.dt-empty-footer
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-start
+  .dt-length
+  select.dt-input {
+  margin-right: 0.25rem;
+}
+
+#list_table_wrapper.dt-container.dt-empty-footer
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-search
+  input.dt-input {
+  margin-left: 0.25rem;
+}
+
+#list_table_wrapper.dt-container.dt-empty-footer
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-start
+  .dt-length
+  select.dt-input:focus,
+#list_table_wrapper.dt-container.dt-empty-footer
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-search
+  input.dt-input:focus {
+  outline: none !important;
+  border-color: #6366f1 !important; /* indigo-500 */
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.2) !important;
+}
+
+#list_table_wrapper.dt-container
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-full
+  .dt-scroll
+  #list_table_processing {
+  display: none !important;
+}
+
+#list_table_wrapper.dt-container
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-full
+  .dt-scroll
+  #list_table_processing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -22px;
+  height: 15px;
+  width: 200px;
+  background-image:
+    linear-gradient(#fff 15px, transparent 0),
+    linear-gradient(#fff 15px, transparent 0),
+    linear-gradient(#fff 15px, transparent 0),
+    linear-gradient(#fff 15px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 15px auto;
+  background-position:
+    0 0,
+    40px 0,
+    80px 0,
+    120px 0;
+  animation: pgfill 1s linear infinite;
+  z-index: 10;
+}
+
+@keyframes pgfill {
+  0% {
+    background-image:
+      linear-gradient(#fff 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0);
+  }
+  25% {
+    background-image:
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0);
+  }
+  50% {
+    background-image:
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0);
+  }
+  75% {
+    background-image:
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#fff 15px, transparent 0);
+  }
+  100% {
+    background-image:
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#6366f1 15px, transparent 0),
+      linear-gradient(#6366f1 15px, transparent 0);
+  }
+}
+
+#list_table_wrapper
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-paging
+  .dt-paging-button {
+  margin: 0 0.2rem !important;
+  padding: 0.25rem 0.6rem !important;
+  border-radius: 0.375rem !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important;
+  font-size: 0.875rem;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#list_table_wrapper
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-paging
+  .dt-paging-button.current,
+#list_table_wrapper
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-paging
+  .dt-paging-button.current:hover {
+  color: #ffffff !important;
+  background-color: oklch(45.7% 0.24 277.023) !important; /* indigo-600 */
+  border-color: oklch(45.7% 0.24 277.023) !important;
+  outline: none !important;
+}
+
+#list_table_wrapper
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-paging
+  .dt-paging-button:not(.current):not(.disabled):hover {
+  color: oklch(45.7% 0.24 277.023) !important; /* indigo-600 */
+  background-color: #ffffff !important;
+  border-color: oklch(45.7% 0.24 277.023) !important; /* indigo-600 */
+  outline: none !important;
+  background-image: none !important;
+}
+
+#list_table_wrapper
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-paging
+  .dt-paging-button.disabled,
+#list_table_wrapper
+  .dt-layout-row
+  .dt-layout-cell.dt-layout-end
+  .dt-paging
+  .dt-paging-button.disabled:hover {
+  color: #d1d5db !important; /* gray-300 */
+  background-color: #f9fafb !important; /* gray-50 */
+  border-color: #e5e7eb !important;
+  cursor: not-allowed !important;
+  background-image: none !important;
+}
