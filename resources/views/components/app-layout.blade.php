@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-  <link rel="icon" href="{{ Storage::url('favicon.ico') ?? '/favicon.ico' }}" type="image/x-icon">
+  <link rel="icon" href="{{ Storage::url(session('logo')) ?? '/favicon.ico' }}" type="image/x-icon">
 
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"
     integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
@@ -30,6 +30,9 @@
 
   {{-- place in end --}}
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+  {{-- pwa --}}
+  @PwaHead
 </head>
 
 <body class="text-[#1b1b18] h-dvh">
@@ -76,6 +79,8 @@
 
     unblockButtons();
   </script>
+
+  @RegisterServiceWorkerScript
 </body>
 
 </html>
