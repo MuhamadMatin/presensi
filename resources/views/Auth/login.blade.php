@@ -6,8 +6,8 @@
         {{-- Logo --}}
         <div class="flex items-center justify-center gap-3 mb-8">
           <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center">
-            @if (session('logo'))
-              <img class="object-cover rounded-sm" src="{{ Storage::url(session('logo')) }}" alt="logo">
+            @if ($settings->logo)
+              <img class="object-cover rounded-sm" src="{{ Storage::url($settings->logo) }}" alt="logo">
             @else
               <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
@@ -16,10 +16,10 @@
               </svg>
             @endif
           </div>
-          <p class="text-lg font-semibold text-gray-800 tracking-wide">{{ session('name') }}</p>
+          <p class="text-lg font-semibold text-gray-800 tracking-wide">{{ $settings->name }}</p>
         </div>
 
-        <form action="{{ route('store.login') }}" method="POST" class="flex flex-col gap-5">
+        <form action="{{ route('store.login') }}" method="POST" id="form" class="flex flex-col gap-5">
           @csrf
 
           {{-- username --}}
@@ -87,8 +87,17 @@
             @enderror
           </div>
 
-          <button type="submit"
-            class="mt-1 w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition duration-150 cursor-pointer">
+          <button type="submit" id="btnSubmit"
+            class="mt-1 w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition duration-150 cursor-pointer flex items-center gap-2 justify-center">
+            <span class="btnLoading hidden w-5 h-5 stroke-white">
+              <svg viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" fill="none" stroke="" stroke-width="3"
+                  stroke-linecap="round" stroke-dasharray="60 120">
+                  <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25"
+                    dur="1s" repeatCount="indefinite"></animateTransform>
+                </circle>
+              </svg>
+            </span>
             Login
           </button>
         </form>

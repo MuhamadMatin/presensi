@@ -23,15 +23,6 @@ class AuthController extends Controller
 
   public function login()
   {
-    if (!session()->has('name') || !session()->has('logo')) {
-      $setting = Setting::select('name', 'logo')->first();
-
-      session([
-        'name' => $setting->name,
-        'logo' => $setting->logo
-      ]);
-    }
-
     return view('Auth.login');
   }
 

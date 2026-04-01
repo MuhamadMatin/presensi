@@ -7,6 +7,7 @@ use EragLaravelPwa\Facades\PWA;
 use EragLaravelPwa\Core\PWA as corePwa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -35,22 +36,6 @@ class SettingController extends Controller
         ];
       })
       ->make(true);
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    return view('Setting.create');
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    //
   }
 
   /**
@@ -106,12 +91,14 @@ class SettingController extends Controller
         'theme_color' => '#6777ef',
         'icons' => [
           [
-            'src' => 'logo.png',
+            'src' => $paw_logo,
             'sizes' => '512x512',
             'type' => 'image/png',
           ],
         ],
       ]);
+
+      Cache::forget('settings');
 
       DB::commit();
       return redirect()->route('settings.index');

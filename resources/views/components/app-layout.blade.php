@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ session('name') ?? config('app.name') }}</title>
+  <title>{{ $settings->name ?? config('app.name') }}</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-  <link rel="icon" href="{{ Storage::url(session('logo')) ?? '/favicon.ico' }}" type="image/x-icon">
+  <link rel="icon" href="{{ Storage::url($settings->logo) ?? '/favicon.ico' }}" type="image/x-icon">
 
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"
     integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>

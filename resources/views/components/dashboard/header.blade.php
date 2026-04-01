@@ -15,8 +15,8 @@
 
   <div class="flex items-center gap-2.5">
     <div class="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center shrink-0">
-      @if (session('logo'))
-        <img class="object-cover rounded-sm" src="{{ Storage::url(session('logo')) }}" alt="logo">
+      @if ($settings->logo)
+        <img class="object-cover rounded-sm" src="{{ Storage::url($settings->logo) }}" alt="logo">
       @else
         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
           <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
@@ -25,6 +25,6 @@
         </svg>
       @endif
     </div>
-    <p class="text-sm font-semibold text-gray-800 tracking-wide">{{ session('name') }}</p>
+    <p class="text-sm font-semibold text-gray-800 tracking-wide">{{ $settings->name }}</p>
   </div>
 </header>
