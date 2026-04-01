@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th>Nama</th>
+        <th>Deskripsi</th>
         <th>Logo</th>
         <th>Action</th>
       </tr>
@@ -36,12 +37,16 @@
           name: 'name',
         },
         {
+          data: 'description',
+          name: 'description',
+        },
+        {
           data: 'logo',
           name: 'logo',
           render: function(data) {
             return `
               <div id="foto-preview" class="flex gap-2 mt-2.5 flex-wrap">
-                <img src="{{ Storage::url('favicon.ico') }}" alt="icon" class="w-20 h-20 object-cover rounded-lg border border-gray-200"/>
+                <img src="{{ Storage::url('logo.png') }}" alt="icon" class="w-20 h-20 object-cover rounded-lg border border-gray-200"/>
               </div>
             `;
           }
