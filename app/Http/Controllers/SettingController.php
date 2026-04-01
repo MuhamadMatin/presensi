@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use EragLaravelPwa\Facades\PWA;
+use EragLaravelPwa\Core\PWA as corePwa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,8 +12,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
-
-use function Symfony\Component\Clock\now;
 
 class SettingController extends Controller
 {
@@ -68,7 +68,8 @@ class SettingController extends Controller
   {
     $validators = Validator::make($request->all(), [
       'nama' => 'required',
-      'logo' => 'sometimes|image|mimes:jpeg,png,jpg,ico|max:2048',
+      'logo' => 'sometimes|image|mimes:png|max:1024',
+      'deskripsi' => 'sometimes',
     ]);
 
     if ($validators->fails()) {
@@ -82,7 +83,8 @@ class SettingController extends Controller
           Storage::disk('public')->delete($setting->logo);
         }
 
-        $file_path = $request->logo->storeAs('/', "favicon.ico", 'public');
+        $file_path = $request->logo->storeAs('/', "logo.png", 'public');
+        $paw_logo = corePwa::processLogo($request);
       } else {
         $file_path = $setting->logo;
       }
@@ -90,8 +92,25 @@ class SettingController extends Controller
       $setting->update([
         'name' => $request->nama,
         'logo' => $file_path,
+        'description' => $request->deskripsi,
         'updated_by' => Auth::id(),
         'updated_at' => now(),
+      ]);
+
+      $pwa = PWA::update([
+        'name' => $request->nama,
+        'short_name' => 'PS',
+        'background_color' => '#6777ef',
+        'display' => 'fullscreen',
+        'description' => $request->deskripsi,
+        'theme_color' => '#6777ef',
+        'icons' => [
+          [
+            'src' => 'logo.png',
+            'sizes' => '512x512',
+            'type' => 'image/png',
+          ],
+        ],
       ]);
 
       DB::commit();
@@ -99,7 +118,7 @@ class SettingController extends Controller
     } catch (\Throwable $e) {
       DB::rollback();
       Log::error('Setting update failed', ['error' => $e->getMessage()]);
-      return redirect()->route('settings.create', $setting->id_setting)->withErrors(['error' => 'Gagal update setting'])->withInput();
+      return redirect()->route('settings.edit', $setting->id_setting)->withErrors(['error' => 'Gagal update setting'])->withInput();
     }
   }
 }

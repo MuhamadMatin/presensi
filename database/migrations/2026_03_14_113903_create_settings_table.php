@@ -15,6 +15,7 @@ return new class extends Migration
       $table->string('id_setting', 50)->primary();
       $table->string('name');
       $table->string('logo')->nullable();
+      $table->string('description')->nullable();
       $table->timestamps();
     });
   }

@@ -18,5 +18,6 @@ class Setting extends Model
     'id_setting',
     'name',
     'logo',
+    'description',
   ];
 }
