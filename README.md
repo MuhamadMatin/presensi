@@ -58,20 +58,33 @@ php artisan migrate --seed
 php artisan storage:link
 ```
 
-### 9. Build asset frontend
+### 9. Setup PWA
+
+```bash
+php artisan erag:install-pwa
+```
+
+> Perintah ini akan membuat file `config/pwa.php` dan file manifest awal di `public/`.
+
+### 10. Build asset frontend
 
 ```bash
 # Development
 npm run dev
+
+# Production
+npm run build
 ```
 
-### 10. Jalankan server
+### 11. Jalankan server
 
 ```bash
 php artisan serve
 ```
 
 Akses `http://localhost:8000`
+
+> ⚠️ **Catatan PWA:** Fitur PWA (install prompt, service worker) hanya berfungsi di **HTTPS**. Sebagian fitur mungkin tidak berfungsi di Localhost.
 
 ---
 
@@ -138,14 +151,33 @@ Karyawan
     └── Update profile & password sendiri
 ```
 
-### Alur Setting
+### Alur Setting & PWA
 
 ```
-Admin → Halaman Setting
-    ├── Update nama aplikasi
-    └── Upload logo/favicon (PNG/JPG, maks 2MB)
-            └── Disimpan sebagai favicon.ico di storage/public
+Admin → Halaman Setting → Edit Setting
+    ├── Update nama & deskripsi aplikasi
+    │       └── Otomatis memperbarui manifest.json PWA
+    └── Upload logo (PNG, min 512x512, maks 1MB)
+            ├── Disimpan ke storage/public/logo.png (untuk DB)
+            ├── Disalin ke public/logo.png (untuk PWA icon)
+            └── manifest.json diperbarui otomatis
 ```
+
+## Progressive Web App (PWA)
+
+PWA menggunakan package [erag/laravel-pwa](https://github.com/eramitgupta/laravel-pwa).
+
+**Fitur PWA yang tersedia:**
+
+- Installasi pada layar utama
+- Offline page
+- Service worker otomatis
+- Manifest dinamis nama & logo bisa diubah via halaman Setting
+
+**Syarat PWA berfungsi penuh:**
+
+- Aplikasi harus diakses melalui **HTTPS**
+- Logo harus berformat **PNG**, ukuran pixel minimal **512x512 piksel**, ukuran file maksimal 1024 KB
 
 ---
 
@@ -156,6 +188,7 @@ Admin → Halaman Setting
 | Backend   | Laravel 12                  |
 | Frontend  | Blade + Tailwind CSS        |
 | Database  | MySQL                       |
+| PWA       | erag/laravel-pwa            |
 | DataTable | DataTables.js (Server Side) |
 | Alert     | SweetAlert2                 |
 | jQuery    | jQuery 4.0.0                |
