@@ -47,15 +47,27 @@
       </div>
 
       {{-- Deskripsi --}}
-      <div class="col-span-2">
+      <div class="col-span-2 md:col-auto">
         <label for="deskripsi" class="block mb-1.5 text-xs font-semibold text-gray-400 uppercase tracking-widest">
           Deskripsi <span class="normal-case text-gray-300">(opsional)</span>
         </label>
         <textarea id="deskripsi" name="deskripsi" rows="5" placeholder="Tambahkan catatan jika diperlukan..."
-          class="w-full px-3.5 py-2.5 text-sm text-gray-800 bg-white border border-gray-400 rounded-lg placeholder-gray-300 resize-none focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition duration-150">{{ old('deskripsi') ?? $setting->description }}</textarea>
+          class="w-full grow px-3.5 py-2.5 text-sm text-gray-800 bg-white border border-gray-400 rounded-lg placeholder-gray-300 resize-none focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition duration-150">{{ old('deskripsi') ?? $setting->description }}</textarea>
         @error('deskripsi')
           <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
         @enderror
+      </div>
+
+      <div class="col-span-2 md:col-auto">
+        <label for="manifest" class="block mb-1.5 text-xs font-semibold text-gray-400 uppercase tracking-widest">
+          Update Manifest
+        </label>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggle-switch" class="sr-only peer" name="manifest" />
+          <div
+            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+          </div>
+        </label>
       </div>
 
       <div class="col-span-2 flex items-center justify-end gap-3 pt-2 border-t border-gray-100">
@@ -77,6 +89,7 @@
           Update Setting
         </button>
       </div>
+
     </form>
   </div>
 

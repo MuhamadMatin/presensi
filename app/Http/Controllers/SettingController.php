@@ -69,34 +69,37 @@ class SettingController extends Controller
         }
 
         $file_path = $request->logo->storeAs('/', "logo.png", 'public');
-        $paw_logo = corePwa::processLogo($request);
       } else {
         $file_path = $setting->logo;
       }
 
-      $setting->update([
-        'name' => $request->nama,
-        'logo' => $file_path,
-        'description' => $request->deskripsi,
-        'updated_by' => Auth::id(),
-        'updated_at' => now(),
-      ]);
+      if ($request->manifest == "on") {
+        $paw_logo = corePwa::processLogo($request);
 
-      $pwa = PWA::update([
-        'name' => $request->nama,
-        'short_name' => 'PS',
-        'background_color' => '#6777ef',
-        'display' => 'fullscreen',
-        'description' => $request->deskripsi,
-        'theme_color' => '#6777ef',
-        'icons' => [
-          [
-            'src' => $paw_logo,
-            'sizes' => '512x512',
-            'type' => 'image/png',
+        $setting->update([
+          'name' => $request->nama,
+          'logo' => $file_path,
+          'description' => $request->deskripsi,
+          'updated_by' => Auth::id(),
+          'updated_at' => now(),
+        ]);
+
+        $pwa = PWA::update([
+          'name' => $request->nama,
+          'short_name' => 'PS',
+          'background_color' => '#6777ef',
+          'display' => 'fullscreen',
+          'description' => $request->deskripsi,
+          'theme_color' => '#6777ef',
+          'icons' => [
+            [
+              'src' => $paw_logo,
+              'sizes' => '512x512',
+              'type' => 'image/png',
+            ],
           ],
-        ],
-      ]);
+        ]);
+      }
 
       Cache::forget('settings');
 
